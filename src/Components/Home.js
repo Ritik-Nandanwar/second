@@ -26,6 +26,9 @@ function Home() {
                 vote_avg={item.vote_average}
                 id={item.id}
                 name={item.original_name}
+                date={item.release_date}
+                first_air_date={item.first_air_date}
+                type={item.media_type}
               />
             ))}
         </div>

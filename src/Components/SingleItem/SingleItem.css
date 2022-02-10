@@ -1,3 +1,8 @@
 .single-img :hover {
   scale: 1.9;
 }
+.single-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
