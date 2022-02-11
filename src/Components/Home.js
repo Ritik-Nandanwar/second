@@ -3,6 +3,7 @@ import axios from "axios";
 import SingleItem from "./SingleItem/SingleItem";
 import { BrowserRouter, Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import SearchInput from "./SearchInput";
 
 function Home() {
   let [page, setPage] = useState(1);
@@ -21,6 +22,7 @@ function Home() {
   let [movies, setMovies] = useState([]);
   return (
     <>
+      <SearchInput movies={movies} setMovies={setMovies} />
       <div className="container mx-auto">
         <div className="grid grid-cols-4 gap-12">
           {movies &&
@@ -38,34 +40,34 @@ function Home() {
             ))}
         </div>
         <div>
-          <div className="flex pagination-btn my-8">
-            <a
-              onClick={() => {
-                if (page > 1) {
+          {movies.length > 0 ? (
+            <div className="flex pagination-btn my-8">
+              <a
+                onClick={() => {
+                  if (page > 1) {
+                    window.scrollTo(0, 0);
+                    setPage((page -= 1));
+                  } else {
+                    window.scrollTo(0, 0);
+                    page = 1;
+                  }
+                }}
+                className="span px-4 cursor-pointer py-2 bg-gray-400 mx-4"
+              >
+                Previous
+              </a>
+              <a
+                className="span px-4 py-2 cursor-pointer bg-purple-400 mx-4"
+                onClick={() => {
                   window.scrollTo(0, 0);
-                  setPage((page -= 1));
-                } else {
-                  window.scrollTo(0, 0);
-                  page = 1;
-                }
-                // setPage(if(page>1) ? page -= 1 : 1 );
-                console.log(page);
-              }}
-              className="span px-4 cursor-pointer py-2 bg-gray-400 mx-4"
-            >
-              Previous
-            </a>
-            <a
-              className="span px-4 py-2 cursor-pointer bg-purple-400 mx-4"
-              onClick={() => {
-                window.scrollTo(0, 0);
-                setPage((page += 1));
-                console.log(page);
-              }}
-            >
-              Next
-            </a>
-          </div>
+                  setPage((page += 1));
+                  console.log(page);
+                }}
+              >
+                Next
+              </a>
+            </div>
+          ) : null}
         </div>
       </div>
     </>
